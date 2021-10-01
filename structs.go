@@ -22,11 +22,15 @@ type provider struct {
 
 // map
 type csmap struct {
+	Mode string
 	Name string
 	Phase string
 	Round int
 	Team_ct *team
 	Team_t *team
+	Num_matches_to_win_series int
+	Current_spectators int
+	Souvenirs_total int
 }
 
 // round
@@ -39,7 +43,9 @@ type round struct {
 // player_id
 type player struct {
 	SteamId string
+	Clan string
 	Name string
+	Observer_slot int
 	Team string
 	Activity string
 	State *playerState
@@ -47,9 +53,12 @@ type player struct {
 	Match_stats *playerMatchStats
 }
 
-// win_team
+// team
 type team struct {
 	Score int
+	Consecutive_round_losses int
+	Timeouts_remaining int
+	Matches_won_this_series int
 }
 
 // player_state
@@ -63,6 +72,7 @@ type playerState struct {
 	Money int
 	Round_kills int
 	Round_killhs int
+	Equip_value int
 }
 
 // player_weapons: weapon_0, weapon_1, weapon_2 ...
