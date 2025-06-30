@@ -148,9 +148,9 @@ type CsMap struct {
 
 // round
 type Round struct {
-	Phase    *RoundPhase
-	Win_team *Side
-	Bomb     *BombRoundState
+	Phase    RoundPhase
+	Win_team Side
+	Bomb     BombRoundState
 }
 
 // player_id
@@ -160,7 +160,7 @@ type Player struct {
 	Name          string
 	Observer_slot int
 	Team          *Side
-	Activity      *PlayerActivity
+	Activity      PlayerActivity
 	State         *PlayerState
 	Weapons       map[string]*Weapon
 	Match_stats   *PlayerMatchStats
@@ -200,8 +200,8 @@ type PlayerState struct {
 type Weapon struct {
 	Name          string
 	PaintKit      string
-	Type          *WeaponType
-	State         *WeaponState
+	Type          WeaponType
+	State         WeaponState
 	Ammo_clip     int
 	Ammo_clip_max int
 	Ammo_reserve  int
@@ -221,14 +221,14 @@ type Auth struct {
 }
 
 type Bomb struct {
-	State     *BombState
+	State     BombState
 	Countdown string
 	Player    string
 	Position  [3]float32
 }
 
 type PhaseCountdown struct {
-	Phase         *PhaseType
+	Phase         PhaseType
 	Phase_ends_in string
 }
 
@@ -236,7 +236,7 @@ type Grenade struct {
 	Owner      int
 	Position   [3]float32
 	Velocity   [3]float32
-	Type       *GrenadeType
+	Type       GrenadeType
 	Lifetime   string
 	EffectTime float32
 }

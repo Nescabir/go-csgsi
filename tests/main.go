@@ -1,8 +1,9 @@
 package main
 
 import (
-	".."
 	"fmt"
+
+	csgsi ".."
 )
 
 func main()  {
@@ -12,7 +13,7 @@ func main()  {
 		for state := range game.Channel {
 			for weapon := range state.Player.Weapons {
 				weapon := state.Player.Weapons[weapon]
-				if(weapon.State == "active") {
+				if(weapon.State == csgsi.WeaponStateActive) {
 					fmt.Printf("%s %d/%d\n", weapon.Name, weapon.Ammo_clip, weapon.Ammo_reserve) // => weapon_glock 20/120
 				}
 			}
