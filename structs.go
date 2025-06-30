@@ -3,8 +3,8 @@ package csgsi
 type Side string
 
 const (
-	T  Side = "T"
-	CT Side = "CT"
+	TSide  Side = "T"
+	CTSide Side = "CT"
 )
 
 type PlayerActivity string
@@ -136,14 +136,14 @@ type Provider struct {
 type CsMap struct {
 	Mode                      string
 	Name                      string
-	Phase                     *MapPhase
+	Phase                     MapPhase
 	Round                     int
 	Team_ct                   *Team
 	Team_t                    *Team
 	Num_matches_to_win_series int
 	Current_spectators        int
 	Souvenirs_total           int
-	Round_wins                map[string]*RoundOutcome
+	Round_wins                map[string]RoundOutcome
 }
 
 // round
@@ -159,7 +159,7 @@ type Player struct {
 	Clan          string
 	Name          string
 	Observer_slot int
-	Team          *Side
+	Team          Side
 	Activity      PlayerActivity
 	State         *PlayerState
 	Weapons       map[string]*Weapon
