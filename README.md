@@ -1,10 +1,10 @@
 # go-csgsi
 
-A library written in Go for Counter-Strike: Global Offensive's Game State Integration.
+A library written in Go for Counter-Strike: Global Offensive/Counter-Strike 2's Game State Integration.
 
 ## About
 
-The `go-csgsi` package listens on a specified port waiting for a HTTP POST request by CS:GO. Once a request is received, it is parsed and ready for the end user.
+The `go-csgsi` package listens on a specified port waiting for a HTTP POST request by CS:GO/CS2. Once a request is received, it is parsed and ready for the end user.
 
 This information can be continuously retrieved and analyzed using a [Channel](https://tour.golang.org/concurrency/2). (See usage & example)
 
@@ -146,7 +146,7 @@ func main()  {
 }
 ```
 
-You'll need to create a `gamestate_integration_*.cfg` file under `csgo/cfg` in your CS:GO installation directory. For example, `gamestate_integration_consolesample.cfg`:
+You'll need to create a `gamestate_integration_*.cfg` file under `csgo/cfg` in your CS:GO/CS2 installation directory. For example, `gamestate_integration_consolesample.cfg`:
 
 ```
 "Console Sample v.1"
