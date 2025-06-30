@@ -21,6 +21,7 @@ $ go get -u github.com/dank/go-csgsi
 # Usage
 
 To initialize the library:
+
 ```go
 // size int - Size of the channel
 game := csgsi.New(10)
@@ -51,6 +52,7 @@ go func() {
 ```
 
 To start listening to an address:
+
 ```go
 // address string - TCP address to listen on
 game.Listen(":3000") // localhost:3000
@@ -58,6 +60,7 @@ game.Listen("8.8.4.4:3000") // 8.8.4.4:3000
 ```
 
 Full struct layout:
+
 ```
 State
     .Provider
@@ -119,9 +122,11 @@ State
         .Auth
             .Token; string
 ```
+
 ## Example
 
 Prints weapon stats (name, ammo) when weapon is active:
+
 ```go
 func main()  {
 	game := csgsi.New(0)
@@ -130,7 +135,7 @@ func main()  {
 		for state := range game.Channel {
 			for weapon := range state.Player.Weapons {
 				weapon := state.Player.Weapons[weapon]
-				if(weapon.State == "active") {
+				if(weapon.State == csgsi.WeaponStateActive) {
 					fmt.Printf("%s %d/%d\n", weapon.Name, weapon.Ammo_clip, weapon.Ammo_reserve) // => weapon_glock 20/120
 				}
 			}
@@ -157,13 +162,24 @@ You'll need to create a `gamestate_integration_*.cfg` file under `csgo/cfg` in y
     }
     "data"
     {
-        "provider"            "1"
-        "map"                 "1"
-        "round"               "1"
-        "player_id"           "1"
-        "player_state"        "1"
-        "player_weapons"      "1"
-        "player_match_stats"  "1"
+		"provider"            		"1" // info about the game providing info
+		"map"                 		"1" // mode, map, phase, team scores
+		"round"               		"1" // round phase and the winning team
+		"player_id"           		"1" // steamid
+		"player_state"        		"1" // armor, flashed, equip_value, health, etc.
+		"map_round_wins"      		"1"	// history of round wins
+		"player_match_stats"  		"1"	// scoreboard info
+		"player_weapons"			"1" // list of player weapons and weapon state
+
+		"allplayers_id"       		"1" // the steam id of each player
+		"allplayers_state"    		"1" // the player_state for each player
+		"allplayers_match_stats"  	"1" // the scoreboard info for each player
+		"allplayers_weapons"  		"1" // the player_weapons for each player
+		"allplayers_position" 		"1" // player_position but for each player
+		"phase_countdowns"    		"1" // time remaining in tenths of a second, which phase
+		"allgrenades"         		"1" // grenade effecttime, lifetime, owner, position, type, velocity
+		"bomb"                		"1" // location of the bomb, who's carrying it, dropped or not
+		"player_position"     		"1" // forward direction, position for currently spectated player
     }
 }
 ```
